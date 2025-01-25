@@ -26,7 +26,7 @@ FIREBASE_CRED = credentials.Certificate("keys/landing-key.json")
 
 # Inicialice la conexión con el Realtime Database con la clave privada y la URL de referencia
 firebase_admin.initialize_app(FIREBASE_CRED, {
-    'databaseURL': 'https://landing-122b5-default-rtdb.firebaseio.com/'
+    'databaseURL': 'https://landing-bab40-default-rtdb.firebaseio.com/'
 })
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-%swt0(llu-h)a_2!p2yh0rti5ecbhej483@*1g35&f+%z1hrj7'
@@ -35,7 +35,11 @@ SECRET_KEY = 'django-insecure-%swt0(llu-h)a_2!p2yh0rti5ecbhej483@*1g35&f+%z1hrj7
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# Fallo: acceso sin autenticación
+LOGIN_URL = '/login/'
+    
+# Éxito: luego de autenticación exitosa
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 

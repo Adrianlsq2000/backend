@@ -14,7 +14,7 @@ class LandingAPI(APIView):
     name = 'Landing API'
 
     # Coloque el nombre de su colección en el Realtime Database
-    collection_name = 'respuestas'
+    collection_name = 'landingPage'
 
     def get(self, request):
 
@@ -40,3 +40,21 @@ class LandingAPI(APIView):
 	        
         # Devuelve el id del objeto guardado
         return Response({"id": new_resource.key}, status=status.HTTP_201_CREATED)
+
+class LandingAPIDetail(APIView):
+    name = 'Landing API Detail'	
+
+    collection_name = 'landingPage'
+
+    def get(self, request, pk):
+        ref = db.reference(f'{self.collection_name}/{pk}')
+        data = ref.get()
+        if data:
+            return Response(data, status=status.HTTP_200_OK)
+        return Response({"error": "Document not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk):
+        return Response(None, status=status.HTTP_200_OK)
+    
+    def delete(self, request, pk):
+        return Response(None, status=status.HTTP_200_OK)
